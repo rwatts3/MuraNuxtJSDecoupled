@@ -1,0 +1,26 @@
+{
+	"global":{
+		"rendererProperties":{
+			"templateArray":["Default"],
+			"hashurls":false,
+			"primaryContentTypes":"Page,Link,File"
+		},
+		"modules":{
+			"example":{
+				"name":"My Module",
+				"contenttypes":"*",
+				"configurator":"<div class=mura-control-group\">\r\n<label>Example Variable<\/label>\r\n<input type=\"text\" name=\"myvar\" class=\"objectParam\"\/>\r\n<\/div>"
+			}
+		},
+	"sites":{
+		"default":{
+			"rendererProperties":{
+
+			},
+			"modules":{
+
+			}
+		}
+	}
+	}
+}
