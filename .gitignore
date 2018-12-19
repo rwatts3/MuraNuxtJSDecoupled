@@ -22,5 +22,6 @@
 .settings
 .tmproj
 .svn
+*/.next
 */node_modules
 */sftp-config.json
