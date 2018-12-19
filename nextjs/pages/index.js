@@ -30,6 +30,7 @@ export default class extends React.Component {
 		})
 
 		async function renderContent(context){
+			console.log(context)
 			return Mura.renderFilename(context.asPath).then((rendered)=>{
 				return rendered
 			},(rendered)=>{
@@ -84,11 +85,6 @@ export default class extends React.Component {
 			}
 		)
 
-
-		Mura.loader()
-			.loadcss(Mura.corepath + '/modules/v1/core_assets/css/mura.7.1.min.css')
-			.loadcss(Mura.corepath + '/modules/v1/core_assets/css/mura.7.1.skin.css');
-
 		// TODO: make this use a react component
 		if(typeof Mura.Module.example == 'undefined'){
 			Mura.Module.example=Mura.UI.extend(
@@ -111,10 +107,13 @@ export default class extends React.Component {
 				}
 			)
 
-
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
 			Mura.init(content.get('config'))
+
+			Mura.loader()
+				.loadcss(Mura.rootpath + '/core/modules/v1/core_assets/css/mura.7.1.min.css')
+				.loadcss(Mura.rootpath + '/core/modules/v1/core_assets/css/mura.7.1.skin.css');
 		}
 	}
 
