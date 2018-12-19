@@ -8,14 +8,22 @@ import React from 'react'
 export default class extends React.Component {
 
 	render() {
-		return (
-			<Layout {...this.props}>
+		var template = '';
+
+		if(this.props.content.contentid){
+			template=<Layout {...this.props}>
 				<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
 				<h1>{this.props.content.title}</h1>
 				<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
 				<div className="mura-region-container" data-region="maincontent"></div>
 				<div id="htmlqueues"></div>
 			</Layout>
+		}
+
+		return (
+			<div>
+			{template}
+			</div>
 		)
 	}
 
@@ -44,7 +52,8 @@ export default class extends React.Component {
 						.getEntity('Content')
 						.set({
 								title:'404',
-								body:'The content that you requested can not be found'
+								body:'The content that you requested can not be found',
+								contentid: Mura.createUUID()
 							})
 				} else {
 					return rendered
