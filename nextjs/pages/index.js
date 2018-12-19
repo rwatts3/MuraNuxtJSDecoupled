@@ -84,6 +84,23 @@ export default class extends React.Component {
 			}
 		)
 
+
+		Mura.loader()
+			.loadcss(Mura.corepath + '/modules/v1/core_assets/css/mura.7.1.min.css')
+			.loadcss(Mura.corepath + '/modules/v1/core_assets/css/mura.7.1.skin.css');
+
+		// TODO: make this use a react component
+		if(typeof Mura.Module.example == 'undefined'){
+			Mura.Module.example=Mura.UI.extend(
+			 {
+				render:function(){
+					this.context.myvar=this.context.myvar || 'Enter example variable in configurator';
+					Mura(this.context.targetEl).html('<h3>' + this.context.myvar + '</h3>' )
+					this.trigger('afterRender');
+				}
+			});
+		}
+
 		if(!content.get('isnew')){
 			Mura('.mura-region-container').each(
 			(region)=>{
@@ -93,6 +110,7 @@ export default class extends React.Component {
 					)
 				}
 			)
+
 
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
