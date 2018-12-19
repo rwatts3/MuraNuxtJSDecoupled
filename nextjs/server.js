@@ -13,12 +13,13 @@ app.prepare()
   const server = express()
   server.get('*', (req, res) => {
 		const parsedUrl = parse(req.url, true)
+		const { pathname, query } = parsedUrl
 		const rootStaticFiles = ['/mura.config.json']
-		if (rootStaticFiles.indexOf(parsedUrl.pathname) > -1) {
-			const path = join(__dirname, 'static', parsedUrl.pathname)
+		if (rootStaticFiles.indexOf(pathname) > -1) {
+			const path = join(__dirname, 'static', pathname)
 			app.serveStatic(req, res, path)
 		} else {
-			app.render(req, res, '/index')
+			app.render(req, res, '/index',query)
 		}
   })
 

@@ -30,8 +30,13 @@ export default class extends React.Component {
 		})
 
 		async function renderContent(context){
-			console.log(context)
-			return Mura.renderFilename(context.asPath).then((rendered)=>{
+			let query={}
+			if(context.browser){
+				query=Mura.getQueryStringParams()
+			} else if (context.query) {
+				query=context.query
+			}
+			return Mura.renderFilename(context.asPath.split("?")[0],query).then((rendered)=>{
 				return rendered
 			},(rendered)=>{
 				if(!rendered){
@@ -77,6 +82,11 @@ export default class extends React.Component {
 
 	contentDidChange(){
 		const content=this.getContent()
+
+		if(content.get('redirect')){
+			location.href=content.get('redirect')
+			return
+		}
 
 		//The setTimeout was used to prevent mysterious double processing of previous html in element
 		setTimeout(
