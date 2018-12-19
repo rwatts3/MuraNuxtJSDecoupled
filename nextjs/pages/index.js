@@ -116,7 +116,7 @@ export default class extends React.Component {
 			});
 		}
 
-		if(!content.get('isnew')){
+		if(content.get('config')){
 			Mura('.mura-region-container').each(
 			(region)=>{
 					region=Mura(region);
