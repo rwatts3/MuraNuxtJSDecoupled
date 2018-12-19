@@ -65,17 +65,17 @@ With this use case Mura modules, templates and content type includes are now loc
 
 There is a mura.config.json file that the Mura service reads in when loading to get what it needs to know from the client.
 
-https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/stattic/mura.config.json
+https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/static/mura.config.json
 
 You tell Mura about it as an environment variable
 
 https://github.com/blueriver/MuraNextJSDecoupled/blob/master/mura/docker-compose.yml#L22
 
+Here you can see an example of registering a module created from with NextJS and registered via the mura.config.json.
 
-In the near future there will be an example of using the mura.config.json to register a custom Mura module developed from with the NextJS client. You can see current example of that in our MuraVueDecoupled and MuraAngularDecoupled example projects.
+https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/pages/index.js#L93-L102
 
-https://github.com/blueriver/MuraVueDecoupled
-https://github.com/blueriver/MuraAngularDecoupled
+https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/static/mura.config.json#L8-L13
 
 ## Mura ORM Assembler and Scaffolder
 
