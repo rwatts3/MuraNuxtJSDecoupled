@@ -101,7 +101,8 @@ export default class extends React.Component {
 		setTimeout(
 			()=>{
 				Mura('#htmlqueues').html(content.get('htmlheadqueue') + content.get('htmlfootqueue'))
-			}
+			},
+			100
 		)
 
 		// TODO: make this use a react component
