@@ -14,9 +14,9 @@
   "dependencies": {
     "express": "^4.16.4",
     "html-react-parser": "^0.6.0",
-    "mura.js": "^1.0.99",
+    "mura.js": "^1.0.102",
     "next": "^7.0.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   }
 }

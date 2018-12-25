@@ -6,6 +6,7 @@ import Mura from 'mura.js'
 import React from 'react'
 
 export default class extends React.Component {
+	state={}
 
 	render() {
 		var template = '';
@@ -29,6 +30,7 @@ export default class extends React.Component {
 
   static async getInitialProps(context) {
 		//Initialize Mura to make api call
+
 		Mura.init({
 			rootpath:"http://localhost:8888",
 			siteid:"default",
@@ -36,6 +38,9 @@ export default class extends React.Component {
 			response:context.res,
 			request:context.req
 		})
+
+		//Don't rely on ready event for when to fire
+		Mura.holdReady(true);
 
 		async function renderContent(context){
 			let query={}
@@ -89,8 +94,12 @@ export default class extends React.Component {
 		return Mura.getEntity('content').set(this.props.content)
 	}
 
-	contentDidChange(){
-		const content=this.getContent()
+	contentDidChange(prevProps){
+
+		const content=Mura.getEntity('content').set(this.props.content)
+		if(prevProps==this.props.content){
+			return;
+		}
 
 		if(content.get('redirect')){
 			location.href=content.get('redirect')
@@ -118,6 +127,7 @@ export default class extends React.Component {
 		}
 
 		if(content.get('config')){
+
 			Mura('.mura-region-container').each(
 			(region)=>{
 					region=Mura(region);
@@ -129,7 +139,10 @@ export default class extends React.Component {
 
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
-			Mura.init(content.get('config'))
+
+			Mura.init(Mura.extend({queueObjects:false},content.get('config')))
+
+			Mura.holdReady(false);
 
 			Mura.loader()
 				.loadcss(Mura.rootpath + '/core/modules/v1/core_assets/css/mura.7.1.min.css')
@@ -137,8 +150,8 @@ export default class extends React.Component {
 		}
 	}
 
-	componentDidUpdate(){
-		this.contentDidChange()
+	componentDidUpdate(prevProps){
+		this.contentDidChange(prevProps)
 	}
 
 	componentDidMount(){
