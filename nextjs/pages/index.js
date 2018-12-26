@@ -97,9 +97,6 @@ export default class extends React.Component {
 	contentDidChange(prevProps){
 
 		const content=Mura.getEntity('content').set(this.props.content)
-		if(prevProps==this.props.content){
-			return;
-		}
 
 		if(content.get('redirect')){
 			location.href=content.get('redirect')
