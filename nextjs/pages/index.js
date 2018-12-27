@@ -58,7 +58,14 @@ export default class extends React.Component {
 						.set({
 								title:'404',
 								body:'The content that you requested can not be found',
-								contentid: Mura.createUUID()
+								contentid: Mura.createUUID(),
+								isnew:1,
+								siteid: Mura.siteid,
+								type: 'Page',
+								subtype: 'Default',
+								contentid: Mura.createUUID(),
+								contenthistid: Mura.createUUID(),
+								filename:"404"
 							})
 				} else {
 					return rendered
