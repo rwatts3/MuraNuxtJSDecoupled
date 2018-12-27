@@ -1,14 +1,17 @@
 import Mura from 'mura.js'
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class Example extends React.Component {
-
 	render() {
-		this.props.myvar=this.props.myvar || 'Enter example variable in configurator';
     return(
       <div>
-          <h3>{this.props.myvar}</h3>
+          <h3>{this.props.myvar || 'Enter example variable in configurator'}</h3>
       </div>
      )
   }
+
+	destroy() {
+	 ReactDOM.unmountComponentAtNode(this.props.targetEl);
+ }
 }
