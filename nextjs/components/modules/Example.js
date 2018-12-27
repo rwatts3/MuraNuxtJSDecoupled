@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom'
 
 export default class Example extends React.Component {
 	render() {
-    return(
-      <div>
-          <h3>{this.props.myvar || 'Enter example variable in configurator'}</h3>
-      </div>
-     )
-  }
+		return(
+			<div>
+			<h3>{this.props.myvar || 'Enter example variable in configurator'}</h3>
+			</div>
+		)
+	}
 
 	destroy() {
-	 ReactDOM.unmountComponentAtNode(this.props.targetEl);
- }
+		ReactDOM.unmountComponentAtNode(this.props.targetEl);
+	}
 }
