@@ -57,6 +57,7 @@ export default class extends React.Component {
 						.getEntity('Content')
 						.set({
 								title:'404',
+								menutitle:'404',
 								body:'The content that you requested can not be found',
 								contentid: Mura.createUUID(),
 								isnew:1,
