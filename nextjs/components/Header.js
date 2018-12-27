@@ -16,9 +16,11 @@ export default class Header extends React.Component {
 		for (let i = 0; i < this.props.primaryNavData.length; i++) {
 
 			//Create the parent and add the children
-			nav.push( <Link key={this.props.primaryNavData[i].contentid} href="/" as={'/' + this.props.primaryNavData[i].filename}>
-				 						<a style={linkStyle}>{this.props.primaryNavData[i].title}</a>
-			 					</Link>)
+			nav.push(
+				<Link key={this.props.primaryNavData[i].contentid} href="/" as={'/' + this.props.primaryNavData[i].filename}>
+					<a style={linkStyle}>{this.props.primaryNavData[i].title}</a>
+				</Link>
+			)
 		}
 		return nav
 	}
