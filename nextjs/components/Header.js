@@ -33,11 +33,11 @@ export default class Header extends React.Component {
 
 			return(
 				<div>
-						{_data.map(function(object, i){
-							return <Link key={object.contentid} href="/" as={'/' + object.filename}>
-				 				<a style={linkStyle}>{object.menutitle}</a>
-				 			</Link>;
-						})}
+					{_data.map(function(object, i){
+						return <Link key={object.contentid} href="/" as={'/' + object.filename}>
+						<a style={linkStyle}>{object.menutitle}</a>
+						</Link>;
+					})}
 				</div>
 			);
 		}
