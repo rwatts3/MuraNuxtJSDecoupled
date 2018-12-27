@@ -2,8 +2,9 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
 import Mura from 'mura.js'
-
+import Example from '../components/modules/Example.js'
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class extends React.Component {
 	state={}
@@ -116,8 +117,7 @@ export default class extends React.Component {
 			Mura.Module.example=Mura.UI.extend(
 			 {
 				render:function(){
-					this.context.myvar=this.context.myvar || 'Enter example variable in configurator';
-					Mura(this.context.targetEl).html('<h3>' + this.context.myvar + '</h3>' )
+	 				ReactDOM.render(React.createElement(Example, this.context), this.context.targetEl	);
 					this.trigger('afterRender');
 				}
 			});
