@@ -29,17 +29,17 @@ export default class Header extends React.Component {
 
 	render() {
 
-			var _data = this.props.primaryNavData;
+		var _data = this.props.primaryNavData;
 
-			return(
-				<div>
-					{_data.map(function(object, i){
-						return <Link key={object.contentid} href="/" as={'/' + object.filename}>
-						<a style={linkStyle}>{object.menutitle}</a>
-						</Link>;
-					})}
-				</div>
-			);
-		}
+		return(
+			<div>
+				{_data.map(function(object, i){
+					return <Link key={object.contentid} href="/" as={'/' + object.filename}>
+					<a style={linkStyle}>{object.menutitle}</a>
+					</Link>;
+				})}
+			</div>
+		);
+	}
 
 }
