@@ -71,9 +71,9 @@ You tell Mura about it as an environment variable
 
 https://github.com/blueriver/MuraNextJSDecoupled/blob/master/mura/docker-compose.yml#L22
 
-Here you can see an example of registering a module created from within NextJS and registered via the mura.config.json.
+Here you can see an example of registering a module created from within NextJS and registered via the mura.config.json and mura.config.js
 
-https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/pages/index.js#L93-L102
+https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/mura.config.js#L7-L13
 
 https://github.com/blueriver/MuraNextJSDecoupled/blob/master/nextjs/static/mura.config.json#L8-L13
 
