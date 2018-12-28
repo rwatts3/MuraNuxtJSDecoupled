@@ -3,7 +3,7 @@ import Example from './components/modules/Example'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-//This module is also register with Mura via the ./static/mura.config.json
+//This module is also registered with Mura via the ./static/mura.config.json
 Mura.Module.example=Mura.UI.extend(
  {
 	render:function(){
