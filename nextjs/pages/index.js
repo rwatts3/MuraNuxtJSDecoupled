@@ -2,9 +2,10 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
 import Mura from 'mura.js'
-import Example from '../components/modules/Example.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+require('../mura.config')
 
 export default class extends React.Component {
 
@@ -118,17 +119,6 @@ export default class extends React.Component {
 			},
 			100
 		)
-
-		// TODO: make this use a react component
-		if(typeof Mura.Module.example == 'undefined'){
-			Mura.Module.example=Mura.UI.extend(
-			 {
-				render:function(){
-	 				ReactDOM.render(React.createElement(Example, this.context), this.context.targetEl	);
-					this.trigger('afterRender');
-				}
-			});
-		}
 
 		if(content.get('config')){
 
