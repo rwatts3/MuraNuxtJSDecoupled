@@ -11,7 +11,4 @@ export default class Example extends React.Component {
 		)
 	}
 
-	destroy() {
-		ReactDOM.unmountComponentAtNode(this.props.targetEl);
-	}
 }

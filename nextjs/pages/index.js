@@ -17,7 +17,7 @@ export default class extends React.Component {
 				<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
 				<h1>{this.props.content.title}</h1>
 				<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
-				<div className="mura-region-container" data-region="maincontent"></div>
+			<div dangerouslySetInnerHTML={{__html: this.props.region.maincontent}}></div>
 				<div id="htmlqueues"></div>
 			</Layout>
 		}
@@ -42,6 +42,15 @@ export default class extends React.Component {
 
 		//Don't rely on ready event for when to fire
 		Mura.holdReady(true);
+
+		//Cleanup React based Mura modules
+		if(typeof document != 'undefined'){
+			Mura('.mura-object-content').each(function(){
+				//try{
+					ReactDOM.unmountComponentAtNode(this);
+				//} catch(e){}
+			})
+		}
 
 		async function renderContent(context){
 			let query={}
@@ -91,10 +100,14 @@ export default class extends React.Component {
 
 		const content=await renderContent(context);
 		const primaryNavData=await getPrimaryNavData()
+		const regionData={};
 
 		return {
 			content:content.getAll(),
-			primaryNavData:primaryNavData
+			primaryNavData:primaryNavData,
+			region:{
+				maincontent:content.renderDisplayRegion('maincontent')
+			}
 		}
 	}
 
@@ -121,15 +134,6 @@ export default class extends React.Component {
 		)
 
 		if(content.get('config')){
-
-			Mura('.mura-region-container').each(
-			(region)=>{
-					region=Mura(region);
-					region.html(
-						content.renderDisplayRegion(region.data('region'))
-					)
-				}
-			)
 
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))

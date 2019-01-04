@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "html-react-parser": "^0.6.0",
-    "mura.js": "^1.0.106",
+    "html-react-parser": "^0.6.1",
+    "mura.js": "^1.0.107",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
