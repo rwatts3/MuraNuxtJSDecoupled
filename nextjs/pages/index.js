@@ -4,23 +4,21 @@ import Link from 'next/link'
 import Mura from 'mura.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Parser from 'html-react-parser';
 
 require('../mura.config')
 
 export default class extends React.Component {
 
 	render() {
-		let template = '';
-		let MuraJSPlaceholder="window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};";
+		var template = '';
 
 		if(this.props.content.contentid){
 			template=<Layout {...this.props}>
-				<script>{Parser(MuraJSPlaceholder)}</script>
-				<h1>{this.props.content.title}</h1>
-				<div>{Parser(this.props.content.body)}</div>
-				<div>{Parser(this.props.region.maincontent)}</div>
-				<div id="htmlqueues"></div>
+			<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
+			<h1>{this.props.content.title}</h1>
+			<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
+			<div dangerouslySetInnerHTML={{__html: this.props.region.maincontent}}></div>
+			<div id="htmlqueues"></div>
 			</Layout>
 		}
 
@@ -48,7 +46,9 @@ export default class extends React.Component {
 		//Cleanup React based Mura modules
 		if(typeof document != 'undefined'){
 			Mura('.mura-object-content').each(function(){
-				ReactDOM.unmountComponentAtNode(this);
+				//try{
+					ReactDOM.unmountComponentAtNode(this);
+				//} catch(e){}
 			})
 		}
 
