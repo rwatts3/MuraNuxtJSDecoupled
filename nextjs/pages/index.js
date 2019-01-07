@@ -10,11 +10,12 @@ require('../mura.config')
 export default class extends React.Component {
 
 	render() {
-		var template = '';
+		let template = '';
+		let MuraJSPlaceholder="window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"
 
 		if(this.props.content.contentid){
 			template=<Layout {...this.props}>
-				<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
+				<script dangerouslySetInnerHTML={{__html: MuraJSPlaceholder}}></script>
 				<h1>{this.props.content.title}</h1>
 				<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
 				<div dangerouslySetInnerHTML={{__html: this.props.region.maincontent}}></div>
@@ -57,18 +58,18 @@ export default class extends React.Component {
 					return Mura
 						.getEntity('Content')
 						.set({
-								title:'404',
-								menutitle:'404',
-								body:'The content that you requested can not be found',
-								contentid: Mura.createUUID(),
-								isnew:1,
-								siteid: Mura.siteid,
-								type: 'Page',
-								subtype: 'Default',
-								contentid: Mura.createUUID(),
-								contenthistid: Mura.createUUID(),
-								filename:"404"
-							})
+							title:'404',
+							menutitle:'404',
+							body:'The content that you requested can not be found',
+							contentid: Mura.createUUID(),
+							isnew:1,
+							siteid: Mura.siteid,
+							type: 'Page',
+							subtype: 'Default',
+							contentid: Mura.createUUID(),
+							contenthistid: Mura.createUUID(),
+							filename:"404"
+						})
 				} else {
 					return rendered
 				}
