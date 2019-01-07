@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Mura from 'mura.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Parser from 'html-react-parser'
 
 require('../mura.config')
 
@@ -126,7 +125,7 @@ export default class extends React.Component {
 		)
 
 		if(content.get('config')){
-			
+
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
 			Mura.init(Mura.extend({queueObjects:false},content.get('config')))
