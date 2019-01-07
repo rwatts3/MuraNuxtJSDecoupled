@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Mura from 'mura.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Parser from 'html-react-parser'
 
 require('../mura.config')
 
@@ -14,11 +15,11 @@ export default class extends React.Component {
 
 		if(this.props.content.contentid){
 			template=<Layout {...this.props}>
-			<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
-			<h1>{this.props.content.title}</h1>
-			<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
-			<div dangerouslySetInnerHTML={{__html: this.props.region.maincontent}}></div>
-			<div id="htmlqueues"></div>
+				<script dangerouslySetInnerHTML={{__html: "window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"}}></script>
+				<h1>{this.props.content.title}</h1>
+				<div dangerouslySetInnerHTML={{__html: this.props.content.body}}></div>
+				<div dangerouslySetInnerHTML={{__html: this.props.region.maincontent}}></div>
+				<div id="htmlqueues"></div>
 			</Layout>
 		}
 
@@ -42,15 +43,6 @@ export default class extends React.Component {
 
 		//Don't rely on ready event for when to fire
 		Mura.holdReady(true);
-
-		//Cleanup React based Mura modules
-		if(typeof document != 'undefined'){
-			Mura('.mura-object-content').each(function(){
-				//try{
-					ReactDOM.unmountComponentAtNode(this);
-				//} catch(e){}
-			})
-		}
 
 		async function renderContent(context){
 			let query={}
@@ -134,10 +126,9 @@ export default class extends React.Component {
 		)
 
 		if(content.get('config')){
-
+			
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
-
 			Mura.init(Mura.extend({queueObjects:false},content.get('config')))
 
 			Mura.holdReady(false);
