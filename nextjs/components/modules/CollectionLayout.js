@@ -59,8 +59,6 @@ export default class CollectionLayout extends React.Component {
 		link=link || 'missing';
 		if(this.state.collection && this.state.collection.has(link)){
 			this.state.collection.get(link).then((collection)=>{
-
-
 				this.setState({collection:collection});
 			})
 		}
