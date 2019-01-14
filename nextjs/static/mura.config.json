@@ -2,14 +2,20 @@
 	"global":{
 		"rendererProperties":{
 			"templateArray":["Default"],
+			"collectionLayoutArray":["NextJSCollectionLayout"],
 			"hashurls":false,
 			"primaryContentTypes":"Page,Link,File"
 		},
 		"modules":{
-			"example":{
+			"Example":{
 				"name":"My Module",
 				"contenttypes":"*",
 				"configurator":"<div class=mura-control-group\">\r\n<label>Example Variable<\/label>\r\n<input type=\"text\" name=\"myvar\" class=\"objectParam\"\/>\r\n<\/div>"
+			},
+			"NextJSCollectionLayout":{
+				"name":"NextJS Collection Layout",
+				"contenttypes":"",
+				"configurator":""
 			}
 		},
 	"sites":{

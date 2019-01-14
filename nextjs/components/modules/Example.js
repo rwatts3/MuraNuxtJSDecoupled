@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 
 export default class Example extends React.Component {
 	render() {
-		this.suppressHydrationWarning=false;
 		return(
 			<div>
 			<h3>{this.props.myvar || 'Enter example variable in configurator'}</h3>

@@ -44,7 +44,7 @@ export default class extends React.Component {
 		//Don't rely on ready event for when to fire
 		Mura.holdReady(true);
 
-		async function renderContent(context){
+		function renderContent(context){
 			let query={}
 			if(context.browser){
 				query=Mura.getQueryStringParams()
@@ -77,7 +77,7 @@ export default class extends React.Component {
 			})
 		}
 
-		async function getPrimaryNavData(){
+		function getPrimaryNavData(){
 			return Mura.getFeed('content')
 				.where()
 				.prop('parentid').isEQ('00000000000000000000000000000000001')
@@ -90,18 +90,19 @@ export default class extends React.Component {
 				});
 		}
 
-		const content=await renderContent(context);
+		const content=await renderContent(context)
 		const primaryNavData=await getPrimaryNavData()
-		const regionData={};
+		const mainregion=await content.renderDisplayRegion('maincontent')
 
 		return {
 			content:content.getAll(),
 			primaryNavData:primaryNavData,
 			region:{
-				maincontent:content.renderDisplayRegion('maincontent')
+				maincontent:mainregion
 			}
 		}
 	}
+
 
 	getContent(){
 		//This inflates the entity's object back into a Mura.Entity instance
@@ -125,11 +126,11 @@ export default class extends React.Component {
 			100
 		)
 
-		if(content.get('config')){
+		if(content.exists()){
 
 			//Re-initialize Mura for browser with content node specific details
 			//console.log(content.get('config'))
-			Mura.init(Mura.extend({queueObjects:false},content.get('config')))
+			Mura.init(Mura.extend({queueObjects:false,content:content}))
 
 			Mura.holdReady(false);
 
