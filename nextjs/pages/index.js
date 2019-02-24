@@ -11,7 +11,7 @@ export default class extends React.Component {
 
 	render() {
 		let template = '';
-		let MuraJSPlaceholder="window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};"
+		let MuraJSPlaceholder="if(typeof Mura=='undefined'){window.queuedMuraCmds=[],window.queuedMuraPreInitCmds=[],window.mura=window.m=window.Mura=function(u){window.queuedMuraCmds.push(u)},window.Mura.preInit=function(u){window.queuedMuraPreInitCmds.push(u)};}"
 
 		if(this.props.content.contentid){
 			template=<Layout {...this.props}>
